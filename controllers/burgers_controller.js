@@ -15,9 +15,32 @@ routes.get("/", function (req, res) {
 });
 
 routes.get("/api/burger", (req, res) => {
-    Burger.selectBurgers().then((err, result) => {
+    goBurger.selectBurgers().then((err, result) => {
         res.send(result);
     }).catch((err) => {
         res.status(500).send({ error: err });
     });
 });
+
+routes.post("/api/burger", (req, res) => {
+    if (!req.body.name) {
+        res.status(500).send({ error: "Burger name is required" });
+    }
+    var newBurger = new goBurger(req.body.name);
+    goBurger.create(newBurger).then(id => {
+        res.json(id);
+    }).catch((err) => {
+        res.status(500).send({ error: err });
+    });
+});
+
+routes.put("/api/burger/:id", (req, res) => {
+    goBurger.updateDevoured(req.params.id).then(result => {
+        res.json(result);
+    }).catch((err) => {
+        res.status(500).send({ error: err });
+    });
+});
+
+
+module.exports = routes;
