@@ -1,46 +1,37 @@
-var routes = require("express").Router();
+var express = require("express");
 var goBurger = require("../models/burger");
+var router = express.Router();
 
-routes.get("/", function (req, res) {
-    goBurger.selectBurgers().then(result => {
-        var devoured = result.filter(b => b.devoured === 1);
-        var undevoured = result.filter(b => b.devoured === 0);
-        res.render("index", {
-            undevouredList: undevoured,
-            devouredList: devoured
-        });
-    }).catch((err) => {
-        res.status(500).send({ error: err });
+router.get("/", function (req, res) {
+    goBurger.selectAll("burgers", function (data) {
+        var burgerData = {
+            burgers: data
+        };
+        console.log(burgerData);
+        res.render("index", burgerData);
     });
 });
 
-routes.get("/api/burger", (req, res) => {
-    goBurger.selectBurgers().then((err, result) => {
-        res.send(result);
-    }).catch((err) => {
-        res.status(500).send({ error: err });
+router.post("/api/burgers", function (req, res) {
+    goBurger.insertOne("burger_name", [req.body.burger], function (err, result) {
+        if (err) {
+            console.log(err)
+        }
+        console.log("hitting post route")
+        res.redirect("/");
     });
 });
 
-routes.post("/api/burger", (req, res) => {
-    if (!req.body.name) {
-        res.status(500).send({ error: "Burger name is required" });
-    }
-    var newBurger = new goBurger(req.body.name);
-    goBurger.create(newBurger).then(id => {
-        res.json(id);
-    }).catch((err) => {
-        res.status(500).send({ error: err });
+router.put("/api/burgers/:id", function (req, res) {
+    var condition = "id = " + req.params.id;
+    console.log("condition", condition);
+    console.log(req.params.id);
+    goBurger.updateInfo({ devoured: req.body.devoured }, condition, function (result) {
+        if (result.changedRows == 0) {
+            return res.status(404).end();
+        } else {
+            res.status(200).end();
+        }
     });
 });
-
-routes.put("/api/burger/:id", (req, res) => {
-    goBurger.updateDevoured(req.params.id).then(result => {
-        res.json(result);
-    }).catch((err) => {
-        res.status(500).send({ error: err });
-    });
-});
-
-
-module.exports = routes;
+module.exports = router;
