@@ -1,8 +1,8 @@
 <div class="container">
     <h1 class="heading">Eat-Da-Burger!</h1>
-    <div class="burger-div">
+    <div class="burgerdiv">
 
-        <ul id="burgers-to-devour">
+        <ul id="burgdevouring">
             <h3>Burgers to Devour!</h3>
             {{#each burgers}}
             {{#unless devoured}}
@@ -17,9 +17,9 @@
 
         </ul>
     </div>
-    <div class="burger-div">
+    <div class="burgerdiv">
 
-        <ul id="burgers-devoured">
+        <ul id="burgdevoured">
             <h3>Burgers Devoured!</h3>
             {{#each burgers}}
             {{#if devoured}}
@@ -32,9 +32,9 @@
 
     </div>
     <form action="/api/burgers" method="POST">
-        <textarea type="text" name="burger" id="burger-input"></textarea>
+        <textarea type="text" name="burger" id="burginput"></textarea>
         <p>What kind of burger do you want to eat? Enter the name of the hamburger then click the "Add Burger" button.
         </p>
-        <button type="submit" id="add-burger">Add Burger</button>
+        <button type="submit" id="addburger">Add Burger</button>
     </form>
 </div>

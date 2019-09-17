@@ -2,25 +2,22 @@
 	margin: 0 auto;
 	text-align: center;
 }
-
 .heading {
 	color: #ff9801;
 }
 
 body {
-	backgroun: #01ff91;
+	background: #01ff91;
 	font-family: Helvetica;
 	width: 100%;
 }
-
-
 
 #burger-image {
 	height: 150px;
 	margin-bottom: -20px;
 }
 
-#burger-input {
+#burginput {
 	height: 30px;
 	width: 280px;
 	font-size: 14px;
@@ -30,18 +27,18 @@ body {
 }
 
 
-.burger-div {
+.burgerdiv {
 	display: block;
-	width: 350px;
+	width: 450px;
 	margin: 0 auto;
 }
 
-#burgers-to-devour, #burgers-devoured {
+#burgdevouring, #burgdevoured {
 	list-style: none;
 }
 
 
-#burgers-to-devour li, #burgers-devoured li {
+#burgdevouring li, #burgdevoured li {
 	background-color: #eae7de;
 	border: 1px solid #d6d5d4;
 	padding: 0 10px;
@@ -50,7 +47,7 @@ body {
 	text-transform: capitalize;
 }
 
-#burgers-devoured li {
+#burgdevoured li {
 	width: 290px;
 }
 
@@ -67,16 +64,12 @@ body {
 	margin-top: -2px;
 }
 
-#add-burger {
+#addburger {
 	height: 40px;
 	width: 120px;
 	background-color: #c91e1e;
 	font-size: 14px;
 	color: #fff;
 	cursor: pointer;
-	border-radius: 5px;
 }
 
-#add-burger:hover {
-	background-color: #ad0f0f;
-}
