@@ -32,7 +32,7 @@ var orm = {
             cb(result);
         });
     },
-    insertInfo: function (table, cols, vals, cb) {
+    create: function (table, cols, vals, cb) {
         var stringQuery = "INSERT INTO " + table;
 
         stringQuery += " (";

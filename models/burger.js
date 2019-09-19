@@ -6,8 +6,8 @@ var burger = {
             cb(res);
         });
     },
-    insertInfo: function (colName, valOfCol, cb) {
-        orm.insertInfo("burgers", colName, valOfCol, function (res) {
+    create: function (colName, valOfCol, cb) {
+        orm.create("burgers", colName, valOfCol, function (res) {
             cb(res);
         });
     },

@@ -13,7 +13,8 @@ router.get("/", function (req, res) {
 });
 
 router.post("/api/burgers", function (req, res) {
-    goBurger.insertOne("burger_name", [req.body.burger], function (err, result) {
+    console.log(req.body.burger);
+    goBurger.create(["burger_name", "devoured"], [req.body.burger, false], function (err, result) {
         if (err) {
             console.log(err)
         }
